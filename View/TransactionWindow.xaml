@@ -1,0 +1,60 @@
+﻿<Window x:Class="SimpleClientsCountsapp.View.TransactionWindow"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:local="clr-namespace:SimpleClientsCountsapp.View"
+            mc:Ignorable="d"
+            Title="Перевод между счетами" Height="230" Width="415" Name="TransactionWnd">
+    <Window.Resources>
+        <Style TargetType="{x:Type Control}" x:Key="baseStyle">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        </Style>
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource baseStyle}"></Style>
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource baseStyle}">
+            <Setter Property="Margin" Value="5,0"/>
+        </Style>
+        <Style TargetType="{x:Type ListView}" BasedOn="{StaticResource baseStyle}"></Style>
+        <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource baseStyle}"></Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" ></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">
+            <TextBlock Text="Со счета" TextAlignment="Center"></TextBlock>
+            <ComboBox Name="BoxCountFrom" SelectedIndex="0" Margin="5" MinHeight="30" ItemsSource="{Binding FilteredCounts}" 
+                      DisplayMemberPath="Id" SelectedItem="{Binding CountFrom}"></ComboBox>
+            <TextBlock Margin="5,0">
+                <Run Text="На счете: "></Run>
+                <Run Text="{Binding  CountFrom.Amount}"></Run>
+            </TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+            <TextBlock Text="На счет" TextAlignment="Center" ></TextBlock>
+            <ComboBox Name="BoxCountTo" SelectedIndex="1"  Margin="5" MinHeight="30" ItemsSource="{Binding FilteredCounts}" 
+                      DisplayMemberPath="Id" IsSynchronizedWithCurrentItem="False" SelectedItem="{Binding CountTo}"/>
+            <TextBlock Margin="5,0">
+                <Run Text="На счете: "></Run>
+                <Run Text="{Binding  CountTo.Amount}"></Run>
+            </TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Text="Сумма" TextAlignment="Center" VerticalAlignment="Center"/>
+            <TextBox x:Name="Sum" Margin="20,0" MinHeight="40" MinWidth="160" Text="{Binding TransactionSum}"/>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Center">
+            <Button Name="Accept" Margin="50,0" MinHeight="40" Content="Перевести" Command="{Binding Transaction}" Click="Accept_OnClick"></Button>
+        </StackPanel>
+    </Grid>
+</Window>

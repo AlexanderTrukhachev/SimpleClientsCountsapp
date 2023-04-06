@@ -1,0 +1,61 @@
+﻿<Window x:Class="SimpleClientsCountsapp.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SimpleClientsCountsapp.View"
+        mc:Ignorable="d"
+        Title="Клиенты и их счета" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="{x:Type Control}" x:Key="baseStyle">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        </Style>
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource baseStyle}"></Style>
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource baseStyle}"></Style>
+        <Style TargetType="{x:Type ListView}" BasedOn="{StaticResource baseStyle}"></Style>
+        <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource baseStyle}"></Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="0" VerticalAlignment="Top">
+            <TextBlock Text="Клиент" HorizontalAlignment="Center" ></TextBlock>
+            <ComboBox Name="ComboBoxClient" Margin="50,0" MinHeight="40" ItemsSource="{Binding AllClients}" 
+                      DisplayMemberPath="Name" SelectedItem="{Binding SelectedClient}"></ComboBox>
+            <Button Content="История операци проводок" Margin="50" MinHeight="40" Command="{Binding OpenHistoryWindow}"/>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center">
+            <Button Content="Перевод средств со счета на счет" Margin="50,0" MinHeight="40" Command="{Binding OpenTransactionWindow }"></Button>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <ListView Name="ViewAllCounts"  Margin="5,5,5,0" Height="300"  ItemsSource="{Binding FilteredCounts}" HorizontalContentAlignment="Stretch">
+                <ListView.View>
+                    <GridView AllowsColumnReorder="False" >
+                        <GridViewColumn Header="Номер счета" DisplayMemberBinding="{Binding Id}" Width="200" />
+                        <GridViewColumn Header="Остаток" DisplayMemberBinding="{Binding Amount}" Width="150"/>
+                        <GridViewColumn Header="Клиент" DisplayMemberBinding="{Binding Clients.Name}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="Импорт" Margin="50, 5" MinHeight="40" />
+                <Button Grid.Column="1" Content="Экспорт" Margin="50, 5" MinHeight="40" Command="{Binding SaveToXML}"/>
+            </Grid>
+        </StackPanel>
+        
+    </Grid>
+</Window>
