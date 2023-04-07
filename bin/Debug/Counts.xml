@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<ArrayOfCount xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Count>
+    <Id>2</Id>
+    <Amount>960</Amount>
+    <Clientsid>1</Clientsid>
+    <Client>
+      <Id>0</Id>
+      <Counts />
+    </Client>
+  </Count>
+  <Count>
+    <Id>4</Id>
+    <Amount>11240</Amount>
+    <Clientsid>1</Clientsid>
+    <Client>
+      <Id>0</Id>
+      <Counts />
+    </Client>
+  </Count>
+  <Count>
+    <Id>3</Id>
+    <Amount>280</Amount>
+    <Clientsid>2</Clientsid>
+    <Client>
+      <Id>0</Id>
+      <Counts />
+    </Client>
+  </Count>
+  <Count>
+    <Id>5</Id>
+    <Amount>2220</Amount>
+    <Clientsid>2</Clientsid>
+    <Client>
+      <Id>0</Id>
+      <Counts />
+    </Client>
+  </Count>
+</ArrayOfCount>
