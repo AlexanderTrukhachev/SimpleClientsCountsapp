@@ -16,7 +16,7 @@ namespace SimpleClientsCountsapp.ViewModel.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var count = (Counts) value;
+            var count = (Count) value;
             if (count == null) 
                 return "";
             return count.Id.ToString() + " (" + count.Amount.ToString() + ")";

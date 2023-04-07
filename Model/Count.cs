@@ -12,8 +12,8 @@ namespace SimpleClientsCountsapp.Model
         public long Id { get; set; }
         public float Amount { get; set; }
 
-        public long? Clientsid { get; set; }
-        public Client? Client { get; set; }
+        public long Clientsid { get; set; }
+        public Client Client { get; set; } = new();
 
         [System.Xml.Serialization.XmlIgnore]
         public ICollection<History> History { get; set; }

@@ -33,28 +33,31 @@
             <ComboBox Name="ComboBoxClient" Margin="50,0" MinHeight="40" ItemsSource="{Binding AllClients}" 
                       DisplayMemberPath="Name" SelectedItem="{Binding SelectedClient}"></ComboBox>
             <Button Content="История операци проводок" Margin="50" MinHeight="40" Command="{Binding OpenHistoryWindow}"/>
-        </StackPanel>
-        <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center">
-            <Button Content="Перевод средств со счета на счет" Margin="50,0" MinHeight="40" Command="{Binding OpenTransactionWindow }"></Button>
-        </StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="0">
-            <ListView Name="ViewAllCounts"  Margin="5,5,5,0" Height="300"  ItemsSource="{Binding FilteredCounts}" HorizontalContentAlignment="Stretch">
-                <ListView.View>
-                    <GridView AllowsColumnReorder="False" >
-                        <GridViewColumn Header="Номер счета" DisplayMemberBinding="{Binding Id}" Width="200" />
-                        <GridViewColumn Header="Остаток" DisplayMemberBinding="{Binding Amount}" Width="150"/>
-                        <GridViewColumn Header="Клиент" DisplayMemberBinding="{Binding Clients.Name}"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Content="Импорт" Margin="50, 5" MinHeight="40" />
-                <Button Grid.Column="1" Content="Экспорт" Margin="50, 5" MinHeight="40" Command="{Binding SaveToXML}"/>
+                <Button Grid.Column="0" Content="Импорт"  Margin="50, 5" MinHeight="40" Visibility="Hidden"/>
+                <Button Grid.Column="1" Content="Экспорт" ToolTip="Выгрузка данных клиентов и их счетов"  Margin="50, 5" MinHeight="40" Command="{Binding SaveToXML}"/>
             </Grid>
+        </StackPanel>
+        <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center">
+            <Button Content="Перевод средств со счета на счет" Margin="50,0" 
+                    MinHeight="40" Command="{Binding OpenTransactionWindow }"></Button>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <ListView Name="ViewAllCounts"  Margin="5,5,5,0" Height="350"  
+                      ItemsSource="{Binding FilteredCounts}" HorizontalContentAlignment="Stretch">
+                <ListView.View>
+                    <GridView AllowsColumnReorder="False" >
+                        <GridViewColumn Header="Номер счета" DisplayMemberBinding="{Binding Id}" Width="200" />
+                        <GridViewColumn Header="Остаток" DisplayMemberBinding="{Binding Amount}" Width="150"/>
+                        <!--GridViewColumn Header="Клиент" DisplayMemberBinding="{Binding Client.Name}"/-->
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
         </StackPanel>
         
     </Grid>

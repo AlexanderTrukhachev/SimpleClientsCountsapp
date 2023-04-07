@@ -12,6 +12,8 @@ using System.Windows;
 using System.Windows.Data;
 using Microsoft.EntityFrameworkCore.Design;
 using System.Xml.Serialization;
+using Microsoft.EntityFrameworkCore;
+using SimpleClientsCountsapp.Model.Data;
 
 
 namespace SimpleClientsCountsapp.ViewModel
@@ -242,11 +244,23 @@ namespace SimpleClientsCountsapp.ViewModel
 
         private void SaveToXMLMethod()
         {
-            XmlSerializer formater = new XmlSerializer(typeof(List<Client>));
+            XmlSerializer formater = new XmlSerializer(typeof(DbSet<Client>));
             using (var stream = File.OpenWrite("Clients.xml"))
             {
-                formater.Serialize(stream, AllClients);
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    formater.Serialize(stream, db.Clients);
+                }
             }
+            formater = new XmlSerializer(typeof(DbSet<Count>));
+            using (var stream = File.OpenWrite("Counts.xml"))
+            {
+                using (ApplicationContext db = new ApplicationContext())
+                {
+                    formater.Serialize(stream, db.Counts);
+                }
+            }
+            MessageBox.Show("Данные выгружены");
         }
         #endregion
 

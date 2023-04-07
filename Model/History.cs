@@ -10,9 +10,9 @@ namespace SimpleClientsCountsapp.Model
     {
         public DateTime Time { get; set; }
         public float? Diff { get; set; }
-        public long Countid { get; set; }
         public float? Amount { get; set; }
 
-        public virtual Counts Count { get; set; }
+        public long Countid { get; set; }
+        public Count? Count { get; set; }
     }
 }
